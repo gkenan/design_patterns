@@ -1,13 +1,13 @@
 package client
 
 import (
-	"design_patterns/creational/factory_method"
+	"design_patterns/creational/factory"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestIntFactory(t *testing.T) {
-	nf := factory_method.Get("int")
+	nf := factory.Get("int")
 	assert.NotNil(t, nf)
 
 	parse, err := nf.Parse("666")
@@ -16,7 +16,7 @@ func TestIntFactory(t *testing.T) {
 }
 
 func TestFloatFactory(t *testing.T) {
-	nf := factory_method.Get("float")
+	nf := factory.Get("float")
 	assert.NotNil(t, nf)
 	parse, err := nf.Parse("666.6")
 	assert.Nil(t, err)

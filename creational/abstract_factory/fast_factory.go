@@ -2,28 +2,40 @@ package abstract_factory
 
 import "fmt"
 
-type FastHtmlDocument struct {
+type fastFactory struct{}
+
+func (f fastFactory) CreateHtml() HtmlDocument {
+	return new(fastHtmlDocument)
+}
+
+func (f fastFactory) CreateWord() WordDocument {
+	return new(fastWordDocument)
+}
+
+type fastHtmlDocument struct {
 	content string
 }
 
-func (f *FastHtmlDocument) ToHtml() string {
+func (f *fastHtmlDocument) ToHtml() string {
 	return "Fast Html Document: " + f.content
 }
 
-func (f *FastHtmlDocument) Save(fileName string) error {
+func (f *fastHtmlDocument) Save(fileName string) error {
 	fmt.Println("Saving Fast Html Document: " + fileName)
+	f.content = fileName
 	return nil
 }
 
-type FastWordDocument struct {
+type fastWordDocument struct {
 	content string
 }
 
-func (f *FastWordDocument) ToWord() string {
+func (f *fastWordDocument) ToWord() string {
 	return "Fast Word Document: " + f.content
 }
 
-func (f *FastWordDocument) Save(fileName string) error {
+func (f *fastWordDocument) Save(fileName string) error {
 	fmt.Println("Saving Fast Word Document: " + fileName)
+	f.content = fileName
 	return nil
 }
